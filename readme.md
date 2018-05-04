@@ -77,4 +77,4 @@ To update categories or tag
             );
             $categories = Categoriestag::update($data_array_categories);
 ```
-
+end
