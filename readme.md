@@ -124,6 +124,17 @@ class product extends Model
 
 ```
 
+on routes/web.php
+wrtie your web directory like this
+```php
+Route::get('adminpanel/create_product'              , 'productscontroller@create')->name('create_product');
+Route::post('/adminpanel/store_product'             , 'productscontroller@store' )->name('store_product');
+
+Route::get('/adminpanel/edit_product/{slug}'        , 'productscontroller@edit' )->name('edit_product');
+Route::patch('adminpanel/update_productinfo/{slug}' , 'productscontroller@update' )->name('update_productinfo');
+```
+Notice:-  you dont't need to make routes for categories because you will added them in product routes 
+
 From your application,  in your controller.
 
 ```php
