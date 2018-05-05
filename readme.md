@@ -108,7 +108,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
-    protected $fillable = ['slug','user_id', 'product_name'];
+    protected $fillable = ['slug','product_name'];
 
         public function categories()
         {
