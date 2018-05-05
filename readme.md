@@ -75,8 +75,54 @@ in the table of category_product
         });
     }
 ```
+Now you need to make 2 model:-
+1-for categories and you will name it category.
+2-for products and you will name it product.
 
+and you will use php artisan command:-
 
+```php
+php artisan make:model category
+php artisan make:model product
+```
+-After that open category model in app/category.php
+
+and edit it like this:-
+```php
+
+use Illuminate\Database\Eloquent\Model;
+
+class category extends Model
+{
+    protected $fillable = ['category_name','slug'];
+	public function products()
+	{
+	 return $this->belongsToMany('App\product')->withTimestamps();
+	}
+}
+```
+-Open product model in app/product.php
+and edit it like this:-
+```php
+use Illuminate\Database\Eloquent\Model;
+
+class product extends Model
+{
+    protected $fillable = ['slug','user_id', 'product_name'];
+
+        public function categories()
+        {
+            return $this->belongsToMany('App\category')->withTimestamps();
+        }
+        // uses to get the categories list that associated with the product
+        
+        public function getCategoryListAttribute()
+        {
+            return $this->categories->pluck('category_name')->toArray();
+        }
+}
+
+```
 
 From your application,  in your controller.
 
