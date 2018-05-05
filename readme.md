@@ -18,7 +18,65 @@ larvelcode\tagcategories\CattagServiceProvider::class,
 
 ## Usage
 
+
 ### Basic
+
+i'll give you example to make our categories in My real project.
+
+you need to be understand the relationship manytomany
+
+1-first you neet to make 3 tables to use category
+
+the first table is products.
+the second one is categories.
+the thried is the intermdite between them category_product.
+
+```php
+php artisan make:migration create_products_table --create=products
+php artisan make:migration create_categories_table --create=categories
+php artisan make:migration create_category_product_table --create=category_product
+```
+in the table of products
+
+```php
+    public function up()
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('slug');
+            $table->string('product_name');
+        });
+    }
+```
+
+in the table of categories
+
+```php
+    public function up()
+    {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('slug');
+            $table->string('category_name');
+            $table->timestamps();
+        });
+    }
+```
+in the table of category_product
+```php
+    public function up()
+    {
+        Schema::create('category_product', function (Blueprint $table) {
+            $table->integer('category_id')->unsigned()->index();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('product_id')->unsigned()->index();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+```
+
+
 
 From your application,  in your controller.
 
