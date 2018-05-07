@@ -5,7 +5,7 @@
 Using Composer
 
 ```
-composer require larvelcode/cagcategories:dev-master
+composer require larvelcode/cagcategories:v1.1.x-dev
 ```
 
 Add the service provider to `config/app.php`
