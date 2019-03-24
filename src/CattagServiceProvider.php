@@ -4,7 +4,7 @@ namespace larvelcode\tagcategories;
 
 use Illuminate\Support\ServiceProvider;
 use larvelcode\tagcategories\Categoriestag;
-
+/* man */
 class CattagServiceProvider extends ServiceProvider
 {
     public function boot()
